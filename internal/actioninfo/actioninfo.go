@@ -19,8 +19,7 @@ func Info(dataset []string, dp DataParser) {
 		}
 	}
 dp.ActionInfo()
-var err error
 if err != nil {
-	log.Println("Ошибка: ", err)
+	log.Println("Ошибка: ")
 }
 }
