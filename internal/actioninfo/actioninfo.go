@@ -16,7 +16,8 @@ func Info(dataset []string, dp DataParser) {
 		if err != nil {
 			log.Println("Ошибка: ", err )
 			continue
-		}
+			}
+		}	
 		info, err := dp.ActionInfo()
 		if err != nil {
 			log.Println("Ошибка: ", err)
@@ -24,4 +25,3 @@ func Info(dataset []string, dp DataParser) {
 		fmt.Sprintln(info)
 	}
 
-}
