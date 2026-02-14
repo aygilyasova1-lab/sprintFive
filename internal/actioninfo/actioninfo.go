@@ -23,5 +23,5 @@ info, err := dp.ActionInfo()
 if err != nil {
 	log.Println("Ошибка: ", err)
 }
-fmt.Println(info)
+return info, nil
 }
