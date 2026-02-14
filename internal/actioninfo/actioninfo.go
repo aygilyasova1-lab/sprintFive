@@ -10,7 +10,9 @@ type DataParser interface {
 }
 
 func Info(dataset []string, dp DataParser) {
-
+if len(dataset) == 0 {
+	return
+}
 	for _, v := range dataset {
 		err := dp.Parse(v)
 		if err != nil {
@@ -22,6 +24,6 @@ func Info(dataset []string, dp DataParser) {
 		if err != nil {
 			log.Println("Ошибка: ", err)
 		}
-		fmt.Print(info)
+		fmt.Println(info)
 	}
 
