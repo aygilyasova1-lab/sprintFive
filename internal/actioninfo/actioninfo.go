@@ -22,6 +22,6 @@ func Info(dataset []string, dp DataParser) {
 		if err != nil {
 			log.Println("Ошибка: ", err)
 		}
-		fmt.Sprintln(info)
+		fmt.Print(info)
 	}
 
