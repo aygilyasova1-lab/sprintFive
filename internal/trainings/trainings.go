@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 	"log"
-	"git@github.com:aygilyasova1-lab/sprintFive.git"
+	"github.com/aygilyasova1-lab/sprintFive"
 )
 var (
 	parsingError = errors.New("ошибка парсинга")

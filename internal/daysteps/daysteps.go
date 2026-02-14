@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 	"log"
-	"git@github.com:aygilyasova1-lab/sprintFive.git"
+	"github.com/aygilyasova1-lab/sprintFive"
 )
 
 var (
@@ -24,7 +24,6 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	dataSlice := strings.Split(datastring, ",")
 
 	if len(dataSlice) != 2 {
-		log.Println("Ошибка: ", err)
 
 		return parsingError
 	}
