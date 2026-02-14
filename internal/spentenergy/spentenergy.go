@@ -46,22 +46,18 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 
 	if steps <= 0 {
-		log.Println("Ошибка: ", err)
 
 		return 0, invalidStepsError
 	}
 	if height <= 0 {
-		log.Println("Ошибка: ", err)
 
 		return 0, invalidHeightError
 	}
 	if weight <= 0 {
-		log.Println("Ошибка: ", err)
 
 		return 0, invalidWeightError
 	}
 	if duration <= 0 {
-		log.Println("Ошибка: ", err)
 
 		return 0, invalidDurationError
 	}
@@ -85,7 +81,7 @@ func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
 	}
 	distance := Distance(steps, height)
 
-	hours := duration.Hours(duration)
+	hours := duration.Hours()
 
 	return distance / hours
 

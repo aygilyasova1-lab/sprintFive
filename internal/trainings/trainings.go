@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 	"log"
-	"github.com/aygilyasova1-lab/sprintFive"
+	"git@github.com:aygilyasova1-lab/sprintFive.git"
 )
 var (
 	parsingError = errors.New("ошибка парсинга")
@@ -61,7 +61,7 @@ func (t Training) ActionInfo() (string, error) {
 		calories, err = RunningSpentCalories(t.Steps, t.Weight, t.Height, t.Duration)
 		if err != nil {
 			log.Println("Ошибка: ", err)
-			
+
 			return "", err
 		}
 	case "Ходьба":

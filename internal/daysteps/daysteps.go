@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 	"log"
-	"github.com/aygilyasova1-lab/sprintFive"
+	"git@github.com:aygilyasova1-lab/sprintFive.git"
 )
 
 var (
@@ -56,7 +56,7 @@ func (ds DaySteps) ActionInfo() (string, error) {
 	calories, err := WalkingSpentCalories(ds.Steps, ds.Weight, ds.Height, ds.Duration)
 	if err != nil {
 		log.Println("Ошибка: ", err)
-		
+
 		return "", err
 	}
 
