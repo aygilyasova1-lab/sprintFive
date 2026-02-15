@@ -48,9 +48,9 @@ func (t *Training) Parse(datastring string) (err error) {
 
 func (t Training) ActionInfo() (string, error) {
 
-	distance := Distance(t.Steps, t.Height)
+	distance := spentenergy.Distance(t.Steps, t.Height)
 
-	meanSpeed := MeanSpeed(t.Steps, t.Height, t.Duration)
+	meanSpeed := spentenergy.MeanSpeed(t.Steps, t.Height, t.Duration)
 
 	var calories float64
 
@@ -58,14 +58,14 @@ func (t Training) ActionInfo() (string, error) {
 
 	switch t.TrainingType {
 	case "Бег":
-		calories, err = RunningSpentCalories(t.Steps, t.Weight, t.Height, t.Duration)
+		calories, err = spentenergy.RunningSpentCalories(t.Steps, t.Weight, t.Height, t.Duration)
 		if err != nil {
 			log.Println("Ошибка: ", err)
 
 			return "", err
 		}
 	case "Ходьба":
-		calories, err = WalkingSpentCalories(t.Steps, t.Weight, t.Height, t.Duration)
+		calories, err = spentenergy.WalkingSpentCalories(t.Steps, t.Weight, t.Height, t.Duration)
 		if err != nil {
 			log.Println("Ошибка: ", err)
 
