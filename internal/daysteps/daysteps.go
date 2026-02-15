@@ -1,13 +1,75 @@
 package daysteps
 
+import (
+	"strings"
+	"fmt"
+	"strconv"
+	"time"
+	"log"
+	"errors"
+	"github.com/Yandex-Practicum/tracker/internal/spentenergy"
+	"github.com/Yandex-Practicum/tracker/internal/personaldata"
+)
+
+var (
+	parsingError = errors.New("ошибка парсинга")
+	conversionError = errors.New("ошибка преобразования типа")
+	invalidStepsError = errors.New("некорректное количество шагов")
+	invalidDurationError = errors.New("некорректное время")
+)
 type DaySteps struct {
-	// TODO: добавить поля
+	Steps int
+	Duration time.Duration
+	personaldata.Personal
 }
 
 func (ds *DaySteps) Parse(datastring string) (err error) {
-	// TODO: реализовать функцию
+
+	dataSlice := strings.Split(datastring, ",")
+
+	if len(dataSlice) != 2 {
+
+		return parsingError
+	}
+	steps, err := strconv.Atoi(dataSlice[0])
+	if err != nil {
+		log.Println("Ошибка: ", err)
+
+		return conversionError
+	}
+	if steps <= 0 {
+		return invalidStepsError
+	}
+	duration, err := time.ParseDuration(dataSlice[1])
+	if err != nil {
+		log.Println("Ошибка: ", err)
+
+		return parsingError
+	}
+	if duration <= 0 {
+		return invalidDurationError
+	}
+	ds.Steps = steps
+
+	ds.Duration = duration
+
+	return nil
+
 }
 
 func (ds DaySteps) ActionInfo() (string, error) {
-	// TODO: реализовать функцию
+
+	distance := spentenergy.Distance(ds.Steps, ds.Personal.Height)
+
+	calories, err := spentenergy.WalkingSpentCalories(ds.Steps, ds.Personal.Weight, ds.Personal.Height, ds.Duration)
+	if err != nil {
+		log.Println("Ошибка: ", err)
+
+		return "", err
+	}
+
+	result := fmt.Sprintf("Количество шагов: %d.\nДистанция составила %.2f км.\nВы сожгли %.2f ккал.\n", ds.Steps, distance, calories)
+
+	return result, nil
+
 }
