@@ -2,6 +2,7 @@ package actioninfo
 
 import (
 	"log"
+	"fmt"
 )
 
 type DataParser interface {
@@ -18,12 +19,13 @@ if len(dataset) == 0 {
 		if err != nil {
 			log.Println("Ошибка: ", err )
 			continue
-			}
 		}	
 		info, err := dp.ActionInfo()
 		if err != nil {
 			log.Println("Ошибка: ", err)
+			continue
 		}
 		fmt.Println(info)
+	}
 	}
 
