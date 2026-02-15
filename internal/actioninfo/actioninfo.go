@@ -11,9 +11,6 @@ type DataParser interface {
 }
 
 func Info(dataset []string, dp DataParser) {
-if len(dataset) == 0 {
-	return
-}
 	for _, v := range dataset {
 		err := dp.Parse(v)
 		if err != nil {
