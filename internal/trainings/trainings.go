@@ -42,7 +42,7 @@ func (t *Training) Parse(datastring string) (err error) {
 	}
 	t.Steps = steps
 
-	if dataSlice != "Ходьба" || dataSlice != "Бег" {
+	if dataSlice[1] != "Ходьба" || dataSlice != "Бег" {
 		return invalidTrainingType
 	}
 	t.TrainingType = dataSlice[1]
