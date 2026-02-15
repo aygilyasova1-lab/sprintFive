@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 	"log"
-	"module github.com/Yandex-Practicum/tracker"
+	"module github.com/Yandex-Practicum/tracker/internal/spentenergy"
 )
 var (
 	parsingError = errors.New("ошибка парсинга")
