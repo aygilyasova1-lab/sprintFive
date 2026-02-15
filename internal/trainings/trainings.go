@@ -14,6 +14,8 @@ var (
 	parsingError = errors.New("ошибка парсинга")
 	conversionError = errors.New("ошибка преобразования типа")
 	invalidTrainingType = errors.New("неизвестный тип тренировки")
+	invalidDurationError = errors.New("некорректное время")
+	invalidStepsError = errors.New("некорректное количество шагов")
 )
 
 type Training struct {
@@ -30,17 +32,27 @@ func (t *Training) Parse(datastring string) (err error) {
 	if len(dataSlice) != 3 {
 		return parsingError
 	}
+	
 	steps, err := strconv.Atoi(dataSlice[0])
 	if err != nil {
 		return conversionError
 	}
+	if steps <= 0 {
+		return invalidStepsError
+	}
 	t.Steps = steps
 
+	if dataSlice != "Ходьба" || dataSlice != "Бег" {
+		return invalidTrainingType
+	}
 	t.TrainingType = dataSlice[1]
 
 	duration, err := time.ParseDuration(dataSlice[2])
 	if err != nil {
 		return parsingError
+	}
+	if duration <= 0 {
+		return invalidDurationError
 	}
 	t.Duration = duration
 
@@ -77,7 +89,7 @@ func (t Training) ActionInfo() (string, error) {
 	}
 	hours := t.Duration.Hours()
 
-	result := fmt.Sprintf("Тип тренировки: %s\nДлительность: %v ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n", t.TrainingType, hours, 
+	result := fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n", t.TrainingType, hours, 
 	distance, meanSpeed, calories)
 
 	return result, nil

@@ -14,6 +14,8 @@ import (
 var (
 	parsingError = errors.New("ошибка парсинга")
 	conversionError = errors.New("ошибка преобразования типа")
+	invalidStepsError = errors.New("некорректное количество шагов")
+	invalidDurationError = errors.New("некорректное время")
 )
 type DaySteps struct {
 	Steps int
@@ -29,18 +31,23 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 
 		return parsingError
 	}
-
 	steps, err := strconv.Atoi(dataSlice[0])
 	if err != nil {
 		log.Println("Ошибка: ", err)
 
 		return conversionError
 	}
+	if steps <= 0 {
+		return invalidStepsError
+	}
 	duration, err := time.ParseDuration(dataSlice[1])
 	if err != nil {
 		log.Println("Ошибка: ", err)
 
 		return parsingError
+	}
+	if duration <= 0 {
+		return invalidDurationError
 	}
 	ds.Steps = steps
 
