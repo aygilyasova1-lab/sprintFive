@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 	"log"
-	"github.com/aygilyasova1-lab/sprintFive"
+	"module github.com/Yandex-Practicum/tracker"
 )
 
 var (
