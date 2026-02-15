@@ -42,9 +42,6 @@ func (t *Training) Parse(datastring string) (err error) {
 	}
 	t.Steps = steps
 
-	if dataSlice[1] != "Ходьба" || dataSlice[1] != "Бег" {
-		return invalidTrainingType
-	}
 	t.TrainingType = dataSlice[1]
 
 	duration, err := time.ParseDuration(dataSlice[2])
