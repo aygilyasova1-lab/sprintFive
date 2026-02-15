@@ -6,7 +6,9 @@ import (
 	"strconv"
 	"time"
 	"log"
-	"github.com/Yandex-Practicum/tracker"
+	"errors"
+	"github.com/Yandex-Practicum/tracker/internal/spentenergy"
+	"github.com/Yandex-Practicum/tracker/internal/personaldata"
 )
 
 var (
